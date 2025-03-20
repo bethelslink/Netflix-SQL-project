@@ -57,16 +57,12 @@ CREATE TABLE netflix (
 ## Count the Number of Movies vs TV Shows
 
 ```sql
-Copy
-Edit
 SELECT type, COUNT(*) FROM netflix GROUP BY 1;
 ```
 Objective: Determine the distribution of content types on Netflix.
 
 ## Find the Most Common Rating for Movies and TV Shows
 ```sql
-Copy
-Edit
 WITH RatingCounts AS (
     SELECT type, rating, COUNT(*) AS rating_count
     FROM netflix
@@ -83,16 +79,12 @@ Objective: Identify the most frequently occurring rating for each content type.
 
 ## List All Movies Released in a Specific Year
 ```sql
-Copy
-Edit
 SELECT * FROM netflix WHERE release_year = 2020;
 ```
 Objective: Retrieve all movies released in a specific year.
 
 ## Find the Top 5 Countries with the Most Content on Netflix
 ```sql
-Copy
-Edit
 SELECT country, COUNT(*) AS total_content
 FROM netflix
 WHERE country IS NOT NULL
@@ -104,8 +96,6 @@ Objective: Identify the top 5 countries with the highest number of content items
 
 ## Identify the Longest Movie
 ```sql
-Copy
-Edit
 SELECT * FROM netflix WHERE type = 'Movie'
 ORDER BY SPLIT_PART(duration, ' ', 1)::INT DESC;
 ```
@@ -113,8 +103,6 @@ Objective: Find the movie with the longest duration.
 
 ## Find Content Added in the Last 5 Years
 ```sql
-Copy
-Edit
 SELECT * FROM netflix
 WHERE TO_DATE(date_added, 'Month DD, YYYY') >= CURRENT_DATE - INTERVAL '5 years';
 ```
@@ -123,16 +111,12 @@ Objective: Retrieve content added to Netflix in the last 5 years.
 ## Find All Movies TV Shows by a Specific Director
 
 ```sql
-Copy
-Edit
 SELECT * FROM netflix WHERE director = 'Rajiv Chilaka';
 ```
 Objective: List all content directed by 'Rajiv Chilaka'.
 
 ## List All TV Shows with More Than 5 Seasons
 ```sql
-Copy
-Edit
 SELECT * FROM netflix
 WHERE type = 'TV Show' AND SPLIT_PART(duration, ' ', 1)::INT > 5;
 ```
@@ -140,8 +124,6 @@ Objective: Identify TV shows with more than 5 seasons.
 
 ## Count the Number of Content Items in Each Genre
 ```sql
-Copy
-Edit
 SELECT UNNEST(STRING_TO_ARRAY(listed_in, ',')) AS genre, COUNT(*) AS total_content
 FROM netflix
 GROUP BY genre;
@@ -150,8 +132,6 @@ Objective: Count the number of content items in each genre.
 
 ## Find the Top 5 Years with the Highest Average Content Release in India
 ```sql
-Copy
-Edit
 SELECT release_year, COUNT(show_id) AS total_release
 FROM netflix
 WHERE country = 'India'
@@ -164,8 +144,6 @@ Objective: Identify the years with the highest average content release in India.
 ## Categorize Content Based on Specific Keywords
 
 ```sql
-Copy
-Edit
 SELECT category, COUNT(*) AS content_count
 FROM (
     SELECT CASE 
