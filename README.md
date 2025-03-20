@@ -32,7 +32,7 @@ This project involves a comprehensive analysis of Netflix's movies and TV shows 
 - Explore and categorize content based on specific criteria and keywords.
 
 ## Dataset
-Dataset: `netflix_titles.csv`
+[Download netflix_titles.csv](netflix_titles.csv)
 
 ## Schema
 ```sql
