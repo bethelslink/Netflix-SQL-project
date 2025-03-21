@@ -13,7 +13,6 @@
   - [List All Movies Released in a Specific Year](#list-all-movies-released-in-a-specific-year)
   - [Find the Top 5 Countries with the Most Content on Netflix](#find-the-top-5-countries-with-the-most-content-on-netflix)
   - [Identify the Longest Movie](#identify-the-longest-movie)
-  - [Find Content Added in the Last 5 Years](#find-content-added-in-the-last-5-years)
   - [Find All Movies/TV Shows by a Specific Director](#find-all-movies-tv-shows-by-a-specific-director)
   - [List All TV Shows with More Than 5 Seasons](#list-all-tv-shows-with-more-than-5-seasons)
   - [Count the Number of Content Items in Each Genre](#count-the-number-of-content-items-in-each-genre)
@@ -101,19 +100,13 @@ ORDER BY SPLIT_PART(duration, ' ', 1)::INT DESC;
 ```
 Objective: Find the movie with the longest duration.
 
-## Find Content Added in the Last 5 Years
-```sql
-SELECT * FROM netflix
-WHERE TO_DATE(date_added, 'Month DD, YYYY') >= CURRENT_DATE - INTERVAL '5 years';
-```
-Objective: Retrieve content added to Netflix in the last 5 years.
 
 ## Find All Movies TV Shows by a Specific Director
 
 ```sql
-SELECT * FROM netflix WHERE director = 'Rajiv Chilaka';
+SELECT * FROM netflix WHERE director = 'Martin Scorsese';
 ```
-Objective: List all content directed by 'Rajiv Chilaka'.
+Objective: List all content directed by 'Martin Scorsese'.
 
 ## List All TV Shows with More Than 5 Seasons
 ```sql
@@ -130,11 +123,11 @@ GROUP BY genre;
 ```
 Objective: Count the number of content items in each genre.
 
-## Find the Top 5 Years with the Highest Average Content Release in India
+## Find the Top 5 Years with the Highest Average Content Release in United Kingdom
 ```sql
 SELECT release_year, COUNT(show_id) AS total_release
 FROM netflix
-WHERE country = 'India'
+WHERE country = 'United Kingdom'
 GROUP BY release_year
 ORDER BY total_release DESC
 LIMIT 5;
