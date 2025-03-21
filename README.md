@@ -16,7 +16,7 @@
   - [Find All Movies/TV Shows by a Specific Director](#find-all-movies-tv-shows-by-a-specific-director)
   - [List All TV Shows with More Than 5 Seasons](#list-all-tv-shows-with-more-than-5-seasons)
   - [Count the Number of Content Items in Each Genre](#count-the-number-of-content-items-in-each-genre)
-  - [Find the Top 5 Years with the Highest Average Content Release in India](#find-the-top-5-years-with-the-highest-average-content-release-in-india)
+  - [Find the Top 5 Years with the Highest Average Content Release in United Kingdom](#find-the-top-5-years-with-the-highest-average-content-release-in-United-Kingdom)
   - [Categorize Content Based on Specific Keywords](#categorize-content-based-on-specific-keywords)
 - [Findings and Conclusion](#findings-and-conclusion)
 - [Author](#author)
@@ -58,6 +58,8 @@ CREATE TABLE netflix (
 ```sql
 SELECT type, COUNT(*) FROM netflix GROUP BY 1;
 ```
+![Netflix Logo](netone.png)
+
 Objective: Determine the distribution of content types on Netflix.
 
 ## Find the Most Common Rating for Movies and TV Shows
@@ -74,12 +76,16 @@ RankedRatings AS (
 )
 SELECT type, rating AS most_frequent_rating FROM RankedRatings WHERE rank = 1;
 ```
+![Netflix Logo](nettwo.png)
+
 Objective: Identify the most frequently occurring rating for each content type.
 
 ## List All Movies Released in a Specific Year
 ```sql
 SELECT * FROM netflix WHERE release_year = 2020;
 ```
+![Netflix Logo](netthr.png)
+
 Objective: Retrieve all movies released in a specific year.
 
 ## Find the Top 5 Countries with the Most Content on Netflix
@@ -91,6 +97,8 @@ GROUP BY country
 ORDER BY total_content DESC
 LIMIT 5;
 ```
+![Netflix Logo](netfr.png)
+
 Objective: Identify the top 5 countries with the highest number of content items.
 
 ## Identify the Longest Movie
@@ -98,6 +106,8 @@ Objective: Identify the top 5 countries with the highest number of content items
 SELECT * FROM netflix WHERE type = 'Movie'
 ORDER BY SPLIT_PART(duration, ' ', 1)::INT DESC;
 ```
+![Netflix Logo](netfv.png)
+
 Objective: Find the movie with the longest duration.
 
 
@@ -106,6 +116,8 @@ Objective: Find the movie with the longest duration.
 ```sql
 SELECT * FROM netflix WHERE director = 'Martin Scorsese';
 ```
+![Netflix Logo](netsix.png)
+
 Objective: List all content directed by 'Martin Scorsese'.
 
 ## List All TV Shows with More Than 5 Seasons
@@ -113,6 +125,8 @@ Objective: List all content directed by 'Martin Scorsese'.
 SELECT * FROM netflix
 WHERE type = 'TV Show' AND SPLIT_PART(duration, ' ', 1)::INT > 5;
 ```
+![Netflix Logo](netsv.png)
+
 Objective: Identify TV shows with more than 5 seasons.
 
 ## Count the Number of Content Items in Each Genre
@@ -121,9 +135,12 @@ SELECT UNNEST(STRING_TO_ARRAY(listed_in, ',')) AS genre, COUNT(*) AS total_conte
 FROM netflix
 GROUP BY genre;
 ```
+![Netflix Logo](neteig.png)
+
 Objective: Count the number of content items in each genre.
 
 ## Find the Top 5 Years with the Highest Average Content Release in United Kingdom
+
 ```sql
 SELECT release_year, COUNT(show_id) AS total_release
 FROM netflix
@@ -132,7 +149,9 @@ GROUP BY release_year
 ORDER BY total_release DESC
 LIMIT 5;
 ```
-Objective: Identify the years with the highest average content release in India.
+![Netflix Logo](netnine.png)
+
+Objective: Identify the years with the highest average content release in United Kingdom.
 
 ## Categorize Content Based on Specific Keywords
 
@@ -147,6 +166,8 @@ FROM (
 ) AS categorized_content
 GROUP BY category;
 ```
+![Netflix Logo](netten.png)
+
 Objective: Categorize content as 'Bad' if it contains 'kill' or 'violence' and 'Good' otherwise.
 
 ## Findings and Conclusion
